@@ -1,0 +1,24 @@
+# Web & API
+streamlit
+fastapi
+uvicorn
+python-dotenv
+requests
+
+# PDF & Data Processing
+pypdf
+pydantic
+rank_bm25
+
+# LangChain Ecosystem
+langchain>=0.3.0
+langchain-community
+langchain-groq
+langchain-chroma
+langchain-text-splitters
+langchain-huggingface
+
+# Vector Database & Embeddings
+chromadb
+sentence-transformers
+

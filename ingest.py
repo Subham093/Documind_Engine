@@ -14,3 +14,4 @@ chunks = text_splitter.split_documents(documents)
 
 print(f"Loaded {len(documents)} pages.")
 print(f"Split into {len(chunks)} chunks.")
+

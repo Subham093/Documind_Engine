@@ -1,0 +1,4 @@
+ERROR 502: Server timeout
+WARNING: CPU usage high
+INFO: Request processed successfully
+ERROR 404: Page not found
