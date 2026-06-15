@@ -1,77 +1,16 @@
-# import streamlit as st
-# import requests
+import os
+import warnings
 
-# st.title("Log Analysis AI")
+# 1. Silence Python deprecation alerts
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-# query = st.text_input("Ask your question:")
+# 2. Silence Hugging Face Hub log messages and token warnings
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+os.environ["HF_HUB_LOG_LEVEL"] = "ERROR"
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# if st.button("Ask"):
-#     res = requests.get(f"http://127.0.0.1:8000/ask?query={query}")
-#     st.write(res.json()["answer"])
-# import streamlit as st
-# import requests
+# Your existing imports continue normally below...
 
-# st.set_page_config(page_title="Nexus RAG Engine", layout="wide")
-# st.title("🤖 Nexus RAG: Intelligent Document Assistant")
-
-# # 1. Initialize chat history in session state
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
-
-# # 2. Sidebar for History
-# with st.sidebar:
-#     st.title("Chat History")
-#     if st.button("Clear Chat"):
-#         st.session_state.messages = []
-#         st.rerun()
-    
-#     # Show a list of past questions in the sidebar
-#     for i, msg in enumerate(st.session_state.messages):
-#         st.text(f"{i+1}. {msg['question'][:30]}...")
-
-# # 3. Display ALL past chat messages from history on every rerun
-# for message in st.session_state.messages:
-#     with st.chat_message("user"):
-#         st.markdown(message["question"])
-#     with st.chat_message("assistant"):
-#         st.markdown(message["answer"])
-
-# # 4. Handle New User Input
-# if query := st.chat_input("Ask about the CSR document..."):
-#     # Immediately display the user's question
-#     with st.chat_message("user"):
-#         st.markdown(query)
-
-#     with st.spinner("The AI is thinking..."):
-#         try:
-#             # Added a 120-second timeout for local LLM processing
-#             res = requests.get(f"http://127.0.0.1:8000/ask?query={query}", timeout=120)
-            
-#             if res.status_code == 200:
-#                 data = res.json()
-                
-#                 # --- DEBUG CHECK ---
-#                 # This will print in your VS Code terminal (not the browser)
-#                 # It helps us see exactly what the Backend sent back.
-#                 print(f"DEBUG: Backend sent this: {data}")
-                
-#                 # Extract the answer using the 'answer' key
-#                 answer = data.get("answer", "Backend responded but 'answer' key was missing.")
-#             else:
-#                 answer = f"Server Error: Received Status Code {res.status_code}"
-                
-#         except requests.exceptions.Timeout:
-#             answer = "The AI took too long to respond. Local models can be slow!"
-#         except Exception as e:
-#             answer = f"Connection Error: {str(e)}"
-
-#         # 5. Display the new AI response
-#         with st.chat_message("assistant"):
-#             st.markdown(answer)
-        
-#         # 6. CRITICAL: Save the new interaction to history
-#         # This ensures it stays on the screen after the next click
-#         st.session_state.messages.append({"question": query, "answer": answer})
 
 
 import streamlit as st
@@ -161,6 +100,16 @@ with st.sidebar:
     if st.button("Clear Chat"):
         st.session_state.chat_history = []
         st.rerun()
+
+    if st.button("🗑️ Clear Database"):
+        if os.path.exists(PERSIST_DIR):
+            shutil.rmtree(PERSIST_DIR)
+            st.session_state.vector_store = None
+            st.session_state.chat_history = []
+            st.success("Database cleared!")
+            st.rerun()
+
+    
 
 # 5. RAG LOGIC (The Clean Way)
 def get_response(user_query, vector_store):
