@@ -1,16 +1,3 @@
-# from rank_bm25 import BM25Okapi
-
-# def bm25_search(query, documents):
-#     tokenized_docs = [doc.page_content.split() for doc in documents]
-#     bm25 = BM25Okapi(tokenized_docs)
-
-#     tokenized_query = query.split()
-#     scores = bm25.get_scores(tokenized_query)
-
-#     top_n = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:3]
-    
-#     return [documents[i] for i in top_n]
-
 from rank_bm25 import BM25Okapi
 
 

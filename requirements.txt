@@ -5,10 +5,14 @@ uvicorn
 python-dotenv
 requests
 
-# PDF & Data Processing
+# Document Processing
 pypdf
-pydantic
+docx2txt
+pdf2image
+pytesseract
 rank_bm25
+pandas
+openpyxl
 
 # LangChain Ecosystem
 langchain>=0.3.0
@@ -17,8 +21,8 @@ langchain-groq
 langchain-chroma
 langchain-text-splitters
 langchain-huggingface
+langchain-classic
 
 # Vector Database & Embeddings
 chromadb
 sentence-transformers
-
