@@ -256,7 +256,7 @@ if st.session_state.vector_store is not None:
 
 There's no "combined knowledge base" — only one document is searchable at a time.
 
-![Uploading a Second Document](images/seconddoc.png)
+![Uploading a Second Document](images/secdoc.png)
 *The user uploads and processes a second document. The newly indexed document replaces the previously indexed document, so only the latest document is available for retrieval.*
 
 ### Scenario 4 — Ask About the First Document After Uploading a Second
