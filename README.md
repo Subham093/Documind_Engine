@@ -82,9 +82,6 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 - 🧹 **Auto-cleanup** — uploaded files are deleted right after processing
 - ⚠️ **Honest, built-in limitations panel** in the app itself
 
-![Known Limitations Panel](images/limitations.png)
-*The app's built-in, honest disclosure of what it can and can't reliably do — shown directly in the sidebar.*
-
 ---
 
 ## 🎥 Demo
@@ -224,9 +221,9 @@ This is the part most READMEs skip — and the part that matters most, because i
 ### Scenario 1 — Upload One Document, Ask a Question
 You upload `research_paper.pdf` and click **Process & Index**.
 
-![Uploading a Document](images/upload1.png)
-![Processing the Document](images/upload2.png)
-*Selecting a file and processing it into the searchable document index.*
+![Processing the Document](images/upload1.png)
+![Successfully Indexed](images/upload2.png)
+*The spinner while DocuMind reads and indexes the document, followed by the success confirmation once it's ready to answer questions.*
 
 The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* — the app searches only this document's chunks, retrieves the relevant ones, and the AI writes an answer using only that text, shown alongside its sources.
 
@@ -315,6 +312,9 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 - Reliably answer **"how many/total/sum/list everything"** style questions
 - **Isolate multiple simultaneous users** from each other
 - Preserve **tables, images, or formatting** from DOCX/PDF files
+
+![Known Limitations Panel](images/limitations.png)
+*This isn't a hidden footnote — the app discloses these exact limitations to the user, directly in the sidebar, before they ever hit one.*
 
 ---
 
