@@ -7,7 +7,7 @@ Uncomment once added:
 <p align="center"><img src="docs/images/banner.png" alt="DocuMind Banner" width="100%"></p>
 -->
 
-<h1 align="center">🧠 DocuMind</h1>
+<h1 align="center">🧩 DocuMind</h1>
 <p align="center"><b>Upload a document. Ask it questions in plain English. Get an answer — with proof of exactly where it came from.</b></p>
 
 <p align="center">
