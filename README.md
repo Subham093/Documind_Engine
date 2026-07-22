@@ -1,189 +1,117 @@
-# 🧠 DocuMind
+<!-- 📷 IMAGE PLACEHOLDER — commented out so it won't show broken until a real
+     file exists here.
+📍 Top of README
+🖼️ Wide banner (1280x400px), DocuMind name over a simple document + chat-bubble illustration
+💡 Suggested file: docs/images/banner.png
+Uncomment once added:
+<p align="center"><img src="docs/images/banner.png" alt="DocuMind Banner" width="100%"></p>
+-->
 
-> Upload a document. Ask it questions in plain English. Get an answer — with proof of exactly where it came from.
+<h1 align="center">🧠 DocuMind</h1>
+<p align="center"><b>Upload a document. Ask it questions in plain English. Get an answer — with proof of exactly where it came from.</b></p>
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
-![LangChain](https://img.shields.io/badge/LangChain-LCEL-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white">
+  <img src="https://img.shields.io/badge/LangChain-LCEL-1C3C3C">
+  <img src="https://img.shields.io/badge/Vector%20DB-Chroma-purple">
+  <img src="https://img.shields.io/badge/LLM-Groq%20%7C%20gpt--oss--120b-orange">
+  <img src="https://img.shields.io/badge/License-MIT-green">
+</p>
 
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Subham093/Documind_Engine?style=social">
+  <img src="https://img.shields.io/github/last-commit/Subham093/Documind_Engine">
+</p>
 
-## 📖 What Is This? (Explain-it-like-I'm-10 version)
+> 💡 **New here?** Jump to [What Should I Expect?](#-what-should-i-expect-when-using-this-app) — it explains the whole app like you've never used an AI tool before.
 
-Imagine a super-smart friend who reads a book for you and then answers your questions about it — and always shows you the exact sentence they got the answer from, so you can check they're right.
+---
+
+## 📚 Table of Contents
+
+1. [What Is This?](#-what-is-this-explain-it-like-im-10)
+2. [The Problem It Solves](#-the-problem-it-solves)
+3. [Features](#-features)
+4. [Screenshots](#️-screenshots)
+5. [Demo](#-demo)
+6. [Architecture](#️-architecture)
+7. [Tech Stack](#-tech-stack)
+8. [Project Structure](#️-project-structure)
+9. [How It Works — Complete Flow](#-how-it-works--the-complete-flow)
+10. [Installation](#️-installation)
+11. [Configuration](#-configuration)
+12. [**Real-World Scenarios (Read This)**](#-real-world-scenarios-exactly-what-happens)
+13. [Memory: What's Remembered](#-memory-whats-remembered-and-for-how-long)
+14. [Capability Matrix](#-capability-matrix)
+15. [What This App CAN / CANNOT Do](#-what-this-application-can-do)
+16. [Edge Cases](#️-edge-cases)
+17. [What Should I Expect?](#-what-should-i-expect-when-using-this-app)
+18. [Security, Performance & Error Handling](#-security)
+19. [Future Improvements](#-future-improvements)
+20. [Contributing](#-contributing)
+21. [License & Author](#-license)
+
+---
+
+## 📖 What Is This? (Explain-it-like-I'm-10)
+
+Imagine a super-smart friend who reads a book for you, then answers your questions about it — and always shows you the exact sentence they got the answer from, so you can check they're right.
 
 **DocuMind is that friend, but it's a computer program.** You give it one document at a time (PDF, Word file, Excel sheet, CSV, or plain text), and then you chat with it about what's inside.
 
-> ⚠️ **Read this whole README before using the app.** It tells you exactly what will happen at each step — no surprises.
+## 🎯 The Problem It Solves
+
+Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catches *exact words* — not "the same idea phrased differently." DocuMind understands **meaning**, not just text matches, so you can ask in your own words and still get the right answer, as long as it actually exists in the document.
+
+**Who benefits:** students digging through research papers, professionals reviewing contracts/reports, or anyone who'd rather ask than read the whole thing.
 
 ---
 
-## 🔄 The Complete Flow (What Happens, Start to Finish)
+## ✨ Features
 
-User Opens the App
-↓
-User Uploads a Document (PDF / TXT / CSV / DOCX / XLSX / XLS)
-↓
-User Clicks "🚀 Process & Index"
-↓
-Any Previous Document's Data Is Deleted From the Vector Store
-↓
-Text Is Extracted From the New File (OCR is used automatically if a PDF is scanned/image-only)
-↓
-Text Is Split Into ~800-Character Chunks
-↓
-Chunks Are Converted Into Vectors (Number-Lists Representing Meaning) and Stored in ChromaDB
-↓
-The Temporary Uploaded File Is Deleted From Disk
-↓
-User Types a Question in the Chat Box
-↓
-If This Isn't the First Question, the App Rewrites It Using Chat History (so "what about that?" becomes a full question)
-↓
-The Hybrid Retriever Searches the CURRENT Document's Vectors (Meaning-Search + Keyword-Search Combined)
-↓
-Retrieved Chunks + Question Are Sent to the AI Model (via Groq)
-↓
-The Model Writes an Answer USING ONLY the Retrieved Chunks
-↓
-Answer Is Shown in the Chat, With an Expandable List of the Exact Chunks Used
-
+- 📄 **Multi-format uploads** — PDF, TXT, CSV, DOCX, XLSX, XLS
+- 🖼️ **Automatic OCR** for scanned/image-only PDFs
+- 🔍 **Hybrid search** — combines meaning-based (vector) search with exact keyword (BM25) search
+- 💬 **Conversational follow-ups** within a session — "what about the second one?" is understood correctly
+- 📎 **Transparent sourcing** — every answer shows the exact chunks it came from
+- 🙅 **Refuses to guess** when the answer isn't in the document, or when a question needs the whole file at once (totals/counts)
+- 🧹 **Auto-cleanup** — uploaded files are deleted right after processing
+- ⚠️ **Honest, built-in limitations panel** in the app itself
 
 ---
 
-## 🧪 Real-World Scenarios (Exactly What Happens)
+## 🖼️ Screenshots
 
-### Scenario 1 — Upload One PDF, Ask a Question
-You upload `research_paper.pdf` and click Process & Index. The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* The app searches only `research_paper.pdf`'s stored chunks, finds the relevant ones, and the AI model writes an answer using only that retrieved text — displayed along with the source chunks it used.
+<!-- 📷 Home screen, before any upload -->
+> 📷 Insert screenshot here — full app view, sidebar + empty chat area
+> Suggested file: `docs/images/home.png`
 
-### Scenario 2 — Ask Multiple Questions About the Same Document
-✅ **Fully supported.** After indexing one document, you can ask as many questions as you like without re-uploading. Each question also benefits from chat history — so a follow-up like "and the second one?" is understood correctly, because the app rewrites it into a standalone question first.
+<!-- 📷 Mid-processing state -->
+> 📷 Insert screenshot here — sidebar with a file selected, "Processing..." spinner visible
+> Suggested file: `docs/images/upload.png`
 
-### Scenario 3 — Upload a Second Document
-❌ **The second document REPLACES the first, it does not add to it.**
-Here's exactly what happens: clicking Process & Index on `document2.pdf` first deletes all of `document1.pdf`'s stored vectors (`vector_store.delete_collection()`), *then* indexes `document2.pdf` fresh. There is no "combined knowledge base" — the app only ever holds one document's content at a time.
+<!-- 📷 A real answer with sources shown -->
+> 📷 Insert screenshot here — a question answered, with the "View source chunks used" expander open
+> Suggested file: `docs/images/qa-sources.png`
 
-### Scenario 4 — Ask About the First Document After Uploading a Second (⚠️ important)
-**This is where it gets tricky, and I want to be exact about it, because two different things happen at once:**
+<!-- 📷 Limitations panel -->
+> 📷 Insert screenshot here — the "⚠️ Known Limitations" expander opened
+> Suggested file: `docs/images/limitations.png`
 
-- `document1.pdf`'s vector data is **gone** — it was deleted in Scenario 3.
-- But your **chat history is NOT cleared** when you upload a new document (only the "Clear Chat" button clears it).
+## 🎥 Demo
 
-So if you ask a question about `document1.pdf` after uploading `document2.pdf`:
-1. The app rewrites your question using the still-present chat history (which still mentions `document1.pdf`'s topics).
-2. It searches `document2.pdf`'s vectors (the only ones that exist) for anything relevant.
-3. Since `document1.pdf`'s content isn't there anymore, the model should say: *"I cannot find this information in the uploaded document."*
-
-> ⚠️ **Known Limitation:** Once a new document is uploaded, the previous document's content is permanently removed from the searchable index. Questions about it can no longer be answered correctly, even though the chat history *mentions* it. **To ask about a previous document again, you must re-upload it** — which will, in turn, delete whatever is currently loaded.
-
-### Scenario 5 — Browser Refresh / Closing and Reopening the App
-Refreshing the page (or closing and reopening the app) starts a brand-new session. `vector_store` resets to empty in that new session — the app does **not** automatically reconnect to the `chroma_db/` folder from before. **You must re-upload your document to use the app again.** (Old vector data may still physically exist in the `chroma_db/` folder on disk, but the running app doesn't load it back in automatically.)
-
----
-
-## 🧠 Memory: What's Remembered, and For How Long
-
-| Type of Memory | Supported? | Explanation |
-|---|---|---|
-| **Remember current document** | ✅ | Yes, for as long as you don't upload a new one or refresh the page |
-| **Ask multiple questions about the same document** | ✅ | Fully supported within one session |
-| **Remember chat history (conversation memory)** | ✅ | Yes, within the same session — persists even across document uploads (see Scenario 4's caveat) |
-| **Upload multiple documents at once / combine them** | ❌ | Not supported — one document is replaced by the next |
-| **Search across multiple documents** | ❌ | Not supported |
-| **Ask about an older, already-replaced document** | ❌ | Not supported — its data is deleted on new upload |
-| **Remember documents after refreshing the page** | ❌ | Not supported — session resets, must re-upload |
-| **Remember documents after closing and reopening the app** | ❌ | Not supported — same as above |
-| **Multiple users with properly isolated data** | ❌ | Not designed for this — no login system; concurrent users would share the same server-side `chroma_db`/`temp_data` folders |
-
----
-
-## ✅ What This Application CAN Do
-
-- Accept **one document at a time**: PDF, TXT, CSV, DOCX, XLSX, or XLS
-- Automatically use **OCR** for scanned/image-only PDFs
-- Answer questions about that document using **hybrid search** (meaning-based + keyword-based)
-- Handle **multiple follow-up questions** in one session, understanding conversational references ("that", "it", "the second one")
-- Show you the **exact source chunks** used for every answer
-- Honestly say **"I don't know"** when the answer isn't in the document
-- Refuse to guess on **counting/totaling questions** (e.g., "how many rows are there") since it never sees a whole spreadsheet/document at once — only a handful of relevant chunks
-- **Automatically clean up** temporary uploaded files after processing
-
-## ❌ What This Application CANNOT Do
-
-- Cannot hold **more than one document** in its searchable memory at a time — a new upload deletes the old one
-- Cannot answer questions about a **previously uploaded document** once it's been replaced
-- Cannot **combine or search across** multiple documents
-- Cannot **remember any document after a page refresh** or app restart — always requires a fresh upload
-- Cannot guarantee it will **never make a mistake** — it's designed to reduce hallucination by only using retrieved text, but this isn't a 100% guarantee
-- Cannot reliably answer **"how many/total/sum/list everything"** style questions, since it only sees retrieved excerpts, not the full file
-- Cannot **isolate multiple simultaneous users** from each other — not built as a multi-tenant system
-- Cannot preserve **tables, images, or formatting** from DOCX files, or images/charts inside PDFs
-
----
-
-## 💡 What Should I Expect When Using This App?
-
-- **Upload:** any single file — PDF, TXT, CSV, DOCX, XLSX, or XLS.
-- **Wait time:** processing usually takes a few seconds to under a minute, depending on file size — scanned PDFs (which need OCR) take noticeably longer than normal text PDFs.
-- **Answers:** short (up to 3 sentences for normal questions), always tied to a visible source chunk you can double check.
-- **Uploading a new file:** wipes out the previous document — treat each upload as "starting fresh," not "adding to what's there."
-- **Unsupported questions** (like "how many total rows are there?" on a spreadsheet): the app will tell you plainly it can't answer that from the excerpt it has, rather than guessing.
-- **Invalid or unreadable PDF:** you'll see a clear on-screen error, not a silent failure or a crash.
-- **PDF with no extractable text at all** (even after OCR): you'll see an error saying the file may be corrupted, password-protected, or blank.
-- **If the AI can't find the answer:** it will say so directly — "I cannot find this information in the uploaded document" — instead of making something up.
-
----
-
-## ⚠️ Edge Cases
-
-| Situation | What Happens |
-|---|---|
-| Asking a question with no document uploaded | The app shows a warning: "Please upload a file first." |
-| Empty or blank PDF | Text extraction returns almost nothing; OCR is attempted as a fallback; if still empty, a clear error is shown |
-| Corrupted PDF | Loading fails; the user sees a processing error message, not a crash |
-| Password-protected PDF | Will very likely fail to extract text and fall through to the "could not extract readable text" error |
-| Scanned/image-only PDF | Automatically detected (very little extractable text) and switched to OCR |
-| PDF with tables | Table structure (rows/columns) is **not** preserved — it becomes plain flowing text |
-| Very large PDF | Will take longer to process (more chunks to embed); no explicit file-size limit is enforced in the code, so extremely large files could be slow |
-| Uploading the same file twice | Treated as a completely new upload — replaces whatever was previously indexed (even if it's literally the same file) |
-| Unrelated question (not in the document) | The model is instructed to say it can't find the answer, rather than guessing |
-| Groq API failure | Caught and shown to the user as an error message, not a silent crash |
-
----
-
-## 📊 Capability Matrix
-
-| User Action | Supported? | Actual Behavior |
-|---|---|---|
-| Upload one document | ✅ | Fully supported for PDF, TXT, CSV, DOCX, XLSX, XLS |
-| Ask multiple questions about it | ✅ | Chat history is kept for the session |
-| OCR for scanned PDFs | ✅ | Automatic fallback when text extraction is near-empty |
-| Upload multiple documents at once | ❌ | Each new upload deletes the previous one |
-| Search across multiple documents | ❌ | Not implemented |
-| Return to a previously uploaded document | ❌ | Its data is gone once replaced |
-| Remember chat history within a session | ✅ | Persists until "Clear Chat" is pressed or the page is refreshed |
-| Persistent document storage across sessions | ❌ | Refreshing/reopening the app requires re-uploading |
-| Cross-session memory | ❌ | Not implemented |
-| Multiple users, properly isolated | ❌ | Not designed for concurrent multi-user use |
-
----
-
-## ✨ Features Summary
-
-- 📄 Multi-format uploads (PDF, TXT, CSV, DOCX, XLSX, XLS)
-- 🖼️ Automatic OCR for scanned PDFs
-- 🔍 Hybrid search (meaning + keyword)
-- 💬 Conversational follow-up understanding within a session
-- 📎 Transparent sourcing — every answer shows its source chunks
-- 🙅 Refuses to guess when the answer isn't present
-- 🧹 Auto-deletes temp files after processing
-- ⚠️ Honest, built-in disclosure of its own limitations (see below)
+> 🎬 Insert a short demo GIF here: upload → Process & Index → ask a question → see the sourced answer
+> Suggested file: `docs/images/demo.gif`
 
 ---
 
 ## 🏗️ Architecture
 
-> 📊 **Insert a diagram here** showing: `User → Streamlit UI → Document Loader → Text Splitter → ChromaDB (single active document)`, and separately: `Question → History-Aware Rewriter → Hybrid Retriever → Groq LLM → Answer + Sources`.
+> 📊 Insert a diagram here showing two paths:
+> **Indexing:** `User → Streamlit UI → Document Loader (+ OCR fallback) → Text Splitter → ChromaDB`
+> **Asking:** `Question → History-Aware Rewriter → Hybrid Retriever (Vector + BM25) → Groq LLM → Answer + Sources`
+> Suggested file: `docs/images/architecture.png`
 
 ---
 
@@ -191,18 +119,20 @@ Refreshing the page (or closing and reopening the app) starts a brand-new sessio
 
 | Category | Technology | Why it's used |
 |---|---|---|
-| Frontend | Streamlit | Chat-style web app, pure Python |
-| Orchestration | LangChain (LCEL + `langchain-classic`) | Chains together question-rewriting → retrieval → answer generation |
-| LLM | `openai/gpt-oss-120b` via Groq API | Writes answers fast; replaced `llama-3.3-70b-versatile`, which Groq is retiring Aug 16, 2026 |
-| Embeddings | `sentence-transformers/all-MiniLM-L6-v2` | Turns text into meaning-vectors, run locally |
+| Frontend | Streamlit | Chat-style web app, pure Python, no separate frontend needed |
+| Orchestration | LangChain (LCEL + `langchain-classic`) | Chains question-rewriting → retrieval → answer generation |
+| LLM | `openai/gpt-oss-120b` via Groq API | Fast inference; replaced `llama-3.3-70b-versatile`, which Groq is retiring Aug 16, 2026 |
+| Embeddings | `sentence-transformers/all-MiniLM-L6-v2` | Turns text into meaning-vectors, runs locally — no document content leaves the server just to be embedded |
 | Vector DB | ChromaDB | Stores and searches those vectors |
-| Keyword search | `rank_bm25` | Catches exact terms meaning-search might miss |
+| Keyword search | `rank_bm25` | Catches exact terms/names/numbers meaning-search alone might miss |
 | PDF reading | `pypdf` | Extracts text from normal PDFs |
-| OCR | `pytesseract` + `pdf2image` (+ `tesseract-ocr`, `poppler-utils`) | Reads scanned PDFs as images |
+| OCR | `pytesseract` + `pdf2image` (+ system `tesseract-ocr`, `poppler-utils`) | Reads scanned PDF pages as images |
 | Other formats | `docx2txt`, `pandas`, `openpyxl` | Reads DOCX, CSV, Excel |
-| Secrets | `python-dotenv` | Loads API keys from `.env`, never hardcoded |
-| Testing | `pytest` | Automated checks for the retriever and loader |
+| Secrets | `python-dotenv` | Loads the Groq API key from `.env`, never hardcoded |
+| Testing | `pytest` | Automated checks for the retriever and loader logic |
 | Deployment | Hugging Face Spaces | Hosts the public live app |
+
+> ℹ️ **No database, no login system, no user accounts.** Everything lives in your current browser session — see [Memory](#-memory-whats-remembered-and-for-how-long) below.
 
 ---
 
@@ -211,25 +141,25 @@ Refreshing the page (or closing and reopening the app) starts a brand-new sessio
 ```text
 rag_engine/
 │
-├── app.py                     # ⭐ The live app — everything described above happens here
-├── document_loader.py         # ⭐ Reads any supported file type, with OCR fallback for scanned PDFs
+├── app.py                     # ⭐ The live app — everything below happens here
+├── document_loader.py         # ⭐ Reads any supported file type, with OCR fallback
 ├── hybrid_retriever.py        # ⭐ Vector + BM25 search, merged and de-duplicated
 │
 ├── requirements.txt            # Python packages
 ├── packages.txt                 # System packages needed for OCR on deployment
 ├── .env                         # Your Groq API key (never committed)
 │
-├── asset/                       # App icon (⚠️ check naming matches app.py's reference)
+├── asset/                       # App icon
 ├── chroma_db/                   # Auto-created — current document's vectors live here
 ├── temp_data/                   # Auto-created — holds an upload briefly, then deletes it
 │
 ├── tests/
 │   ├── test_hybrid_retriever.py
-│   └── test_doc_loader.py
+│   └── test_document_loader.py
 │
-└── experiments/                 # 🧪 Earlier prototypes, NOT part of the live app — kept as learning history
+└── experiments/                 # 🧪 Earlier prototypes, NOT used by the live app — kept as build history
     ├── app_backend.py           # Alternate FastAPI backend (upload/ask endpoints)
-    ├── chat.py                  # Simplest RAG chain, fully local model (Ollama + Llama 3.2)
+    ├── chat.py                  # Simplest RAG chain, using a local Ollama model
     ├── chunking.py
     ├── hybrid_search.py
     ├── ingest.py
@@ -239,19 +169,55 @@ rag_engine/
     └── store.py
 ```
 
+**How the files interact:** `app.py` is the only file that runs directly. It imports `document_loader.py` to read whatever you upload, and `hybrid_retriever.py` to search through it. Nothing in `experiments/` is called by the running app.
+
+---
+
+## 🔄 How It Works — The Complete Flow
+
+```
+User opens the app
+       ↓
+User uploads a document (PDF / TXT / CSV / DOCX / XLSX / XLS)
+       ↓
+User clicks "🚀 Process & Index"
+       ↓
+Any previous document's data is deleted from the vector store
+       ↓
+Text is extracted (OCR kicks in automatically if it's a scanned PDF)
+       ↓
+Text is split into ~800-character overlapping chunks
+       ↓
+Chunks are turned into vectors (meaning-fingerprints) and stored in ChromaDB
+       ↓
+The temporary uploaded file is deleted from disk
+       ↓
+User types a question
+       ↓
+If it's a follow-up, the app rewrites it into a standalone question using chat history
+       ↓
+The hybrid retriever searches the CURRENT document's vectors (meaning + keyword combined)
+       ↓
+Retrieved chunks + question are sent to the AI model (Groq)
+       ↓
+The model writes an answer USING ONLY the retrieved chunks
+       ↓
+Answer is shown, with an expandable list of the exact chunks used
+```
+
 ---
 
 ## ⚙️ Installation
 
 1. Install Python 3.10+: `python --version`
-2. Clone the repo: `git clone https://github.com/Subham093/Rag_Engine.git && cd Rag_Engine`
+2. Clone the repo: `git clone https://github.com/Subham093/Documind_Engine.git && cd Documind_Engine`
 3. Create a virtual environment: `python -m venv venv`
 4. Activate it — Windows: `venv\Scripts\Activate.ps1` · Mac/Linux: `source venv/bin/activate`
 5. Install packages: `pip install -r requirements.txt`
 6. Install OCR system tools — Windows: install Tesseract + Poppler and add to PATH · Mac: `brew install tesseract poppler` · Linux: `sudo apt install tesseract-ocr poppler-utils`
 7. Get a free Groq API key at [console.groq.com](https://console.groq.com)
 8. Create a `.env` file (see Configuration below)
-9. Run it: `streamlit run app.py`
+9. Run it: `streamlit run app.py` → open `http://localhost:8501`
 
 ## 🔐 Configuration
 
@@ -259,7 +225,127 @@ rag_engine/
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-An environment variable is like a sticky note kept outside your code, so your secret key never ends up visible on GitHub. `.env` is already listed in `.gitignore`.
+An environment variable is like a sticky note kept *outside* your code, so your secret key never ends up visible on GitHub. `.env` is already listed in `.gitignore` — double-check it stays that way before pushing.
+
+---
+
+## 🧭 Real-World Scenarios (Exactly What Happens)
+
+This is the part most READMEs skip — and the part that matters most, because it's what a real user actually experiences.
+
+### Scenario 1 — Upload One Document, Ask a Question
+You upload `research_paper.pdf` and click **Process & Index**. The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* — the app searches only this document's chunks, retrieves the relevant ones, and the AI writes an answer using only that text, shown alongside its sources.
+
+### Scenario 2 — Ask Multiple Questions About the Same Document
+✅ **Fully supported.** Ask as many questions as you like without re-uploading. Follow-ups like "and the second one?" work correctly, because the app rewrites them into standalone questions first.
+
+### Scenario 3 — Upload a Second Document
+❌ **The second document REPLACES the first — it does not add to it.** Clicking Process & Index on `document2.pdf` first wipes `document1.pdf`'s stored vectors, then indexes the new file fresh:
+
+```python
+if st.session_state.vector_store is not None:
+    st.session_state.vector_store.delete_collection()   # old document's index is wiped
+    st.session_state.vector_store = None
+# ...then a fresh index is built from only the new document
+```
+
+There's no "combined knowledge base" — only one document is searchable at a time.
+
+### Scenario 4 — Ask About the First Document After Uploading a Second
+⚠️ **This is the part worth knowing carefully.** Two things happen at once:
+- `document1.pdf`'s vector data is **gone** (deleted in Scenario 3)
+- But your **chat history is not cleared** on a new upload — only clicking "Clear Chat" clears it
+
+So a question about `document1.pdf` gets rewritten using chat history that still mentions it, but the retriever can only search `document2.pdf`'s vectors — the only ones that exist. The model should correctly respond *"I cannot find this information in the uploaded document."*
+
+> ⚠️ **Known limitation:** once a new document is uploaded, the previous one's content is permanently gone from the searchable index, even though the chat history still mentions it. **To ask about a previous document again, re-upload it** — which will, in turn, replace whatever's currently loaded. Clicking **Clear Chat** before switching documents avoids any confusing carryover.
+
+### Scenario 5 — Refresh / Close and Reopen the App
+Refreshing starts a brand-new session. The vector store resets — the app does **not** automatically reconnect to the `chroma_db/` folder from before. You'll need to re-upload to continue. (Old vector data may still physically sit in `chroma_db/` on disk, but the running app never loads it back in automatically.)
+
+---
+
+## 🧠 Memory: What's Remembered, and For How Long
+
+| Type of Memory | Supported? | Explanation |
+|---|---|---|
+| Remember current document while using it | ✅ | Yes, until a new upload or a page refresh |
+| Ask multiple questions about the same document | ✅ | Fully supported |
+| Remember chat history (conversation memory) | ✅ | Persists within a session, even across document uploads (see Scenario 4) |
+| Upload multiple documents / combine them | ❌ | One document replaces the next |
+| Search across multiple documents | ❌ | Not implemented |
+| Ask about an older, already-replaced document | ❌ | Its data is deleted on new upload |
+| Remember documents after refreshing the page | ❌ | Session resets, must re-upload |
+| Remember documents after closing/reopening the app | ❌ | Same as above |
+| Multiple users, properly isolated | ❌ | No login system; concurrent users share the same server-side `chroma_db`/`temp_data` folders |
+
+---
+
+## 📊 Capability Matrix
+
+| User Action | Supported? | Actual Behavior |
+|---|---|---|
+| Upload one document | ✅ | PDF, TXT, CSV, DOCX, XLSX, XLS |
+| Ask multiple questions about it | ✅ | Chat history kept for the session |
+| OCR for scanned PDFs | ✅ | Automatic fallback when text extraction is near-empty |
+| Upload multiple documents at once | ❌ | Each new upload deletes the previous one |
+| Search across multiple documents | ❌ | Not implemented |
+| Return to a previously uploaded document | ❌ | Its data is gone once replaced |
+| Remember chat history within a session | ✅ | Until "Clear Chat" or a refresh |
+| Persistent storage across sessions | ❌ | Refresh/reopen requires re-uploading |
+| Multiple users, properly isolated | ❌ | Not designed for concurrent multi-user use |
+
+---
+
+## ✅ What This Application CAN Do
+
+- Accept **one document at a time** — PDF, TXT, CSV, DOCX, XLSX, or XLS
+- Automatically use **OCR** for scanned/image-only PDFs
+- Answer questions using **hybrid search** (meaning-based + keyword-based)
+- Handle **follow-up questions** naturally within a session
+- Show the **exact source chunks** behind every answer
+- Say **"I don't know"** honestly when the answer isn't present
+- Refuse to guess on **counting/totaling questions**, since it never sees the whole file at once
+- **Auto-clean** temporary uploaded files after processing
+
+## ❌ What This Application CANNOT Do
+
+- Hold **more than one document** in memory at a time
+- Answer questions about a **previously uploaded document** once replaced
+- **Combine or search across** multiple documents
+- **Remember anything after a refresh** or app restart
+- Guarantee it will **never make a mistake** — hallucination risk is reduced, not eliminated
+- Reliably answer **"how many/total/sum/list everything"** style questions
+- **Isolate multiple simultaneous users** from each other
+- Preserve **tables, images, or formatting** from DOCX/PDF files
+
+---
+
+## ⚠️ Edge Cases
+
+| Situation | What Happens |
+|---|---|
+| Question asked with no document uploaded | Warning shown: *"Please upload a file first."* |
+| Empty or blank PDF | OCR attempted as fallback; if still empty, a clear error is shown |
+| Corrupted PDF | Loading fails gracefully — a processing error message, not a crash |
+| Password-protected PDF | Fails to extract text, falls through to the "could not extract readable text" error |
+| Scanned/image-only PDF | Detected automatically (near-empty text) and switched to OCR |
+| PDF with tables | Table structure isn't preserved — becomes plain flowing text |
+| Very large file | Takes longer to process; no explicit file-size limit enforced in code |
+| Same file uploaded twice | Treated as a fresh upload — replaces whatever was previously indexed |
+| Unrelated question | Model is instructed to say it can't find the answer, not guess |
+| Groq API failure | Caught and shown as an error message, not a silent crash |
+
+---
+
+## 💡 What Should I Expect When Using This App?
+
+- **Upload:** one file at a time — PDF, TXT, CSV, DOCX, XLSX, or XLS
+- **Wait time:** a few seconds to under a minute; scanned PDFs (needing OCR) take noticeably longer
+- **Answers:** short (up to 3 sentences for normal questions), always tied to a visible source you can double-check
+- **New upload = fresh start**, not "adding to what's there"
+- **Unsupported questions** (e.g. "how many total rows?") get an honest "can't answer that from what I have" instead of a guess
+- **Invalid/unreadable PDFs** show a clear on-screen error, never a silent failure
 
 ---
 
@@ -267,26 +353,28 @@ An environment variable is like a sticky note kept outside your code, so your se
 
 - API key loaded via `.env`, never hardcoded
 - `.env`, `venv/`, and `chroma_db/` excluded from Git via `.gitignore`
-- Temp files deleted right after processing
-- No authentication/login system — single-user tool by design, not a multi-tenant platform (see Future Improvements)
+- Temp files deleted immediately after processing
+- No login system — single-user tool by design, not a multi-tenant platform
 
 ## ⚡ Performance
 
-- Chunk size ~800 characters with 80-character overlap
-- BM25 keyword index is rebuilt on every question — fine at single-document scale, would need caching for larger scale
-- One-document-at-a-time design keeps searches fast and focused, at the cost of not supporting multi-document search
+- Chunk size ~800 characters, 80-character overlap
+- BM25 keyword index is rebuilt on every question — fine at single-document scale, would need caching at larger scale
+- One-document-at-a-time design keeps search fast, at the cost of no multi-document support
 
 ## 🧯 Error Handling
 
-- Unsupported file type → clear `ValueError` naming the supported types
+- Unsupported file type → clear error naming the supported types
 - Unreadable PDF, even after OCR → clear error about possible corruption/password-protection
 - Temp file cleanup failures (e.g. Windows file locks) → caught, non-fatal
-- General processing errors → shown as friendly messages, not raw crashes
+- General processing errors → shown as friendly messages, never raw crashes
+
+---
 
 ## 🚀 Future Improvements
 
 - [ ] Support multiple documents at once, with real cross-document search
-- [ ] Auto-reconnect to a previous session's document after refresh, instead of requiring re-upload
+- [ ] Auto-reconnect to a previous session's document after refresh
 - [ ] Add basic user login/isolation for multi-user use
 - [ ] Cache the BM25 index instead of rebuilding it per question
 - [ ] Preserve tables from PDFs/DOCX properly
@@ -304,7 +392,7 @@ An environment variable is like a sticky note kept outside your code, so your se
 
 ## 📄 License
 
-> Add your chosen license here (e.g. MIT) and a matching `LICENSE` file.
+Licensed under the **MIT License** — see the `LICENSE` file for details.
 
 ## 👤 Author
 
