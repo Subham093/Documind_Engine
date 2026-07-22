@@ -19,10 +19,10 @@ Uncomment once added:
   <img src="https://img.shields.io/badge/License-MIT-green">
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/github/stars/Subham093/Documind_Engine?style=social">
-  <img src="https://img.shields.io/github/last-commit/Subham093/Documind_Engine">
-</p>
+<!-- ℹ️ Repo is private (shown to interviewers directly rather than linked
+     publicly), so GitHub-hosted stats badges (stars/last-commit) can't
+     resolve — they're intentionally left out rather than shown broken. -->
+
 
 > 💡 **New here?** Jump to [What Should I Expect?](#-what-should-i-expect-when-using-this-app) — it explains the whole app like you've never used an AI tool before.
 
