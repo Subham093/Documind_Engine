@@ -54,7 +54,7 @@ Uncomment once added:
 
 ---
 
-## 📖 What Is This? (Explain-it-like-I'm-10)
+## 📖 What Is This?
 
 Imagine a super-smart friend who reads a book for you, then answers your questions about it — and always shows you the exact sentence they got the answer from, so you can check they're right.
 
@@ -214,16 +214,22 @@ An environment variable is like a sticky note kept *outside* your code, so your 
 
 ---
 
-## 🧭 Real-World Scenarios (Exactly What Happens)
+## 🧭 Real-World Scenarios 
 
-This is the part most READMEs skip — and the part that matters most, because it's what a real user actually experiences.
+DocuMind is designed to support different real-world document interaction scenarios, from uploading and indexing a document to asking multiple questions and switching between documents.
 
-### Scenario 1 — Upload One Document, Ask a Question
-You upload `research_paper.pdf` and click **Process & Index**.
+Before exploring these scenarios, here's what the typical document-processing flow looks like:
+
+A user begins by uploading a `.pdf` document and clicking **🚀 Process & Index**. DocuMind then starts reading and processing the uploaded document. While this is happening, the application displays a loading state to let the user know that the document is being processed.
 
 ![Processing the Document](images/upload1.png)
+
+Once the document has been successfully processed and indexed, DocuMind displays a confirmation message indicating that the document is ready to be queried.
+
 ![Successfully Indexed](images/upload2.png)
-*The spinner while DocuMind reads and indexes the document, followed by the success confirmation once it's ready to answer questions.*
+
+
+### Scenario 1 — Upload One Document, Ask a Question
 
 The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* — the app searches only this document's chunks, retrieves the relevant ones, and the AI writes an answer using only that text, shown alongside its sources.
 
@@ -231,9 +237,14 @@ The app extracts its text, splits it into chunks, and stores those chunks as vec
 *A real question, answered — with the exact source chunks shown underneath so you can verify it yourself.*
 
 ### Scenario 2 — Ask Multiple Questions About the Same Document
+
 ✅ **Fully supported.** Ask as many questions as you like without re-uploading. Follow-ups like "and the second one?" work correctly, because the app rewrites them into standalone questions first.
 
+![Multiple Questions About the Same Document](images/followup.png)
+*The user asks multiple questions about the same document in a single conversation, including a follow-up question that depends on the previous context.*
+
 ### Scenario 3 — Upload a Second Document
+
 ❌ **The second document REPLACES the first — it does not add to it.** Clicking Process & Index on `document2.pdf` first wipes `document1.pdf`'s stored vectors, then indexes the new file fresh:
 
 ```python
@@ -245,7 +256,11 @@ if st.session_state.vector_store is not None:
 
 There's no "combined knowledge base" — only one document is searchable at a time.
 
+![Uploading a Second Document](images/seconddoc.png)
+*The user uploads and processes a second document. The newly indexed document replaces the previously indexed document, so only the latest document is available for retrieval.*
+
 ### Scenario 4 — Ask About the First Document After Uploading a Second
+
 ⚠️ **This is the part worth knowing carefully.** Two things happen at once:
 - `document1.pdf`'s vector data is **gone** (deleted in Scenario 3)
 - But your **chat history is not cleared** on a new upload — only clicking "Clear Chat" clears it
@@ -254,7 +269,11 @@ So a question about `document1.pdf` gets rewritten using chat history that still
 
 > ⚠️ **Known limitation:** once a new document is uploaded, the previous one's content is permanently gone from the searchable index, even though the chat history still mentions it. **To ask about a previous document again, re-upload it** — which will, in turn, replace whatever's currently loaded. Clicking **Clear Chat** before switching documents avoids any confusing carryover.
 
+![Question About the Previous Document](images/scenario4.png)
+*After switching documents, a question about information from the previous document cannot be answered because its vectors have been removed from the searchable index.*
+
 ### Scenario 5 — Refresh / Close and Reopen the App
+
 Refreshing starts a brand-new session. The vector store resets — the app does **not** automatically reconnect to the `chroma_db/` folder from before. You'll need to re-upload to continue. (Old vector data may still physically sit in `chroma_db/` on disk, but the running app never loads it back in automatically.)
 
 ---
@@ -387,14 +406,52 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 4. Run `pytest tests/ -v`
 5. Open a Pull Request
 
+## 🤝 Contributing
+
+Contributions, suggestions, and improvements are welcome!
+
+To contribute:
+
+1. Fork the repository.
+
+2. Create a new feature branch:
+
+   ```bash
+   git checkout -b feature/your-feature
+3. Make your changes and add or update tests where applicable.
+
+4. Run `pytest tests/ -v`
+
+5. Commit your changes and push the branch.
+
+6. Open a Pull Request with a clear description of your changes.
+
 ## 📄 License
 
 Licensed under the **MIT License** — see the `LICENSE` file for details.
 
-## 👤 Author
+#👤 Author
+Subham Maheswari Jena
 
-**Subham** — building DocuMind as a hands-on RAG portfolio project.
+DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
+
+I'm continuously improving the project and exploring practical applications of Generative AI, RAG systems, NLP, and AI-powered document processing.
 
 ## 🙏 Acknowledgements
 
-LangChain · Groq · ChromaDB · HuggingFace · Streamlit · `rank_bm25` · Tesseract OCR & Poppler
+This project was built with the help of the following open-source technologies and libraries:
+
+LangChain — LLM application and RAG orchestration
+Groq — LLM inference
+ChromaDB — Vector storage and retrieval
+Hugging Face — Embeddings and NLP models
+Streamlit — Interactive web application
+rank_bm25 — BM25-based keyword retrieval
+Tesseract OCR — Optical character recognition
+Poppler — PDF processing and rendering
+
+A huge thanks to the open-source community and the developers maintaining these projects.
+
+## 🔗 Connect With Me
+🐙 **GitHub:** [Subham093](https://github.com/Subham093)
+📧 **Email**: subhammaheswarijena11339@gmail.com
