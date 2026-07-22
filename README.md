@@ -60,6 +60,9 @@ Imagine a super-smart friend who reads a book for you, then answers your questio
 
 **DocuMind is that friend, but it's a computer program.** You give it one document at a time (PDF, Word file, Excel sheet, CSV, or plain text), and then you chat with it about what's inside.
 
+![Home Page](images/home.png)
+*DocuMind right after opening — sidebar with the upload control, Clear Chat, and the Known Limitations panel, before any document is loaded.*
+
 ## 🎯 The Problem It Solves
 
 Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catches *exact words* — not "the same idea phrased differently." DocuMind understands **meaning**, not just text matches, so you can ask in your own words and still get the right answer, as long as it actually exists in the document.
@@ -79,26 +82,10 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 - 🧹 **Auto-cleanup** — uploaded files are deleted right after processing
 - ⚠️ **Honest, built-in limitations panel** in the app itself
 
+![Known Limitations Panel](images/limitations.png)
+*The app's built-in, honest disclosure of what it can and can't reliably do — shown directly in the sidebar.*
+
 ---
-
-## 🖼️ Screenshots
-
-### Home Page
-![Home Page](images/home.png)
-*The app before any document is uploaded — sidebar with upload control, Clear Chat, and the Known Limitations panel.*
-
-### Uploading & Processing a Document
-![Upload Step 1](images/upload1.png)
-![Upload Step 2](images/upload2.png)
-*Selecting a file and processing it into the document index.*
-
-### Question & Answer With Sources
-![Q&A with Sources](images/qa-sources.png)
-*A real question answered, with the exact source chunks shown for verification.*
-
-### Known Limitations Panel
-![Known Limitations](images/limitations.png)
-*The app's built-in, honest disclosure of what it can and can't reliably do.*
 
 ## 🎥 Demo
 
@@ -235,7 +222,16 @@ An environment variable is like a sticky note kept *outside* your code, so your 
 This is the part most READMEs skip — and the part that matters most, because it's what a real user actually experiences.
 
 ### Scenario 1 — Upload One Document, Ask a Question
-You upload `research_paper.pdf` and click **Process & Index**. The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* — the app searches only this document's chunks, retrieves the relevant ones, and the AI writes an answer using only that text, shown alongside its sources.
+You upload `research_paper.pdf` and click **Process & Index**.
+
+![Uploading a Document](images/upload1.png)
+![Processing the Document](images/upload2.png)
+*Selecting a file and processing it into the searchable document index.*
+
+The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* — the app searches only this document's chunks, retrieves the relevant ones, and the AI writes an answer using only that text, shown alongside its sources.
+
+![Answer With Sources](images/qa-sources.png)
+*A real question, answered — with the exact source chunks shown underneath so you can verify it yourself.*
 
 ### Scenario 2 — Ask Multiple Questions About the Same Document
 ✅ **Fully supported.** Ask as many questions as you like without re-uploading. Follow-ups like "and the second one?" work correctly, because the app rewrites them into standalone questions first.
