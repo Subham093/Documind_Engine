@@ -7,6 +7,10 @@
 ![LangChain](https://img.shields.io/badge/LangChain-LCEL-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+<!-- 📷 IMAGE PLACEHOLDER 📍 Top of README 🖼️ A wide banner (1280x400px) with the DocuMind name over a simple document + chat-bubble illustration 💡 Suggested file: docs/images/banner.png --> <p align="center"> <img src="docs/images/banner.png" alt="DocuMind Banner" width="100%"> </p> <h1 align="center">🧩 DocuMind</h1> <p align="center"><b>Upload a document. Ask it questions in plain English. Get honest, grounded answers — with proof of where they came from.</b></p> <p align="center"> <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white"> <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white"> <img src="https://img.shields.io/badge/LangChain-Framework-1C3C3C"> <img src="https://img.shields.io/badge/Vector%20DB-Chroma-purple"> <img src="https://img.shields.io/badge/LLM-Groq%20%7C%20gpt--oss--120b-orange"> <img src="https://img.shields.io/github/license/YOUR_USERNAME/documind"> <img src="https://img.shields.io/github/stars/YOUR_USERNAME/documind?style=social"> <img src="https://img.shields.io/github/last-commit/YOUR_USERNAME/documind"> </p>
+
+💡 New here? Start with the What Should I Expect section — it explains the whole app like you've never used an AI tool before.
+
 ---
 
 ## 📖 What Is This? (Explain-it-like-I'm-10 version)

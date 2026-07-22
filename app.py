@@ -46,8 +46,7 @@ if not os.path.exists(TMP_DIR):
 def load_resources():
     # UPDATED: llama-3.3-70b-versatile is being deprecated by Groq
     # (decommission date: Aug 16, 2026). Migrated to openai/gpt-oss-120b,
-    # Groq's own recommended replacement — same model already used in
-    # NexInbox, so this stays consistent across your projects.
+    
     llm = ChatGroq(
         model="openai/gpt-oss-120b",
         temperature=0,
