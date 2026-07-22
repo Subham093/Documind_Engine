@@ -83,21 +83,22 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 
 ## 🖼️ Screenshots
 
-<!-- 📷 Home screen, before any upload -->
-> 📷 Insert screenshot here — full app view, sidebar + empty chat area
-> Suggested file: `docs/images/home.png`
+### Home Page
+![Home Page](images/home.png)
+*The app before any document is uploaded — sidebar with upload control, Clear Chat, and the Known Limitations panel.*
 
-<!-- 📷 Mid-processing state -->
-> 📷 Insert screenshot here — sidebar with a file selected, "Processing..." spinner visible
-> Suggested file: `docs/images/upload.png`
+### Uploading & Processing a Document
+![Upload Step 1](images/upload1.png)
+![Upload Step 2](images/upload2.png)
+*Selecting a file and processing it into the document index.*
 
-<!-- 📷 A real answer with sources shown -->
-> 📷 Insert screenshot here — a question answered, with the "View source chunks used" expander open
-> Suggested file: `docs/images/qa-sources.png`
+### Question & Answer With Sources
+![Q&A with Sources](images/qa-sources.png)
+*A real question answered, with the exact source chunks shown for verification.*
 
-<!-- 📷 Limitations panel -->
-> 📷 Insert screenshot here — the "⚠️ Known Limitations" expander opened
-> Suggested file: `docs/images/limitations.png`
+### Known Limitations Panel
+![Known Limitations](images/limitations.png)
+*The app's built-in, honest disclosure of what it can and can't reliably do.*
 
 ## 🎥 Demo
 
