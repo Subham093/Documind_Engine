@@ -93,10 +93,14 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 
 ## 🏗️ Architecture
 
-> 📊 Insert a diagram here showing two paths:
-> **Indexing:** `User → Streamlit UI → Document Loader (+ OCR fallback) → Text Splitter → ChromaDB`
-> **Asking:** `Question → History-Aware Rewriter → Hybrid Retriever (Vector + BM25) → Groq LLM → Answer + Sources`
-> Suggested file: `docs/images/architecture.png`
+DocuMind uses a modular RAG architecture with two main workflows:
+
+- **📥 Indexing:** `User → Streamlit → Document Loader + OCR → Text Chunking → Embeddings → ChromaDB`
+- **💬 Question Answering:** `Question → History-Aware Rewriter → Hybrid Retrieval (Vector + BM25) → Groq LLM → Answer + Sources`
+
+The complete system architecture is shown below:
+
+![DocuMind RAG System Architecture](images/architecturediagram.png)
 
 ---
 
@@ -408,8 +412,6 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ---
 
----
-
 ## 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome!
@@ -432,8 +434,6 @@ To contribute:
 
 ---
 
----
-
 ## 📄 License
 
 Licensed under the **MIT License** — see the `LICENSE` file for details.
@@ -444,8 +444,6 @@ Subham Maheswari Jena
 DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
 
 I'm continuously improving the project and exploring practical applications of Generative AI, RAG systems, NLP, and AI-powered document processing.
-
----
 
 ---
 
@@ -464,5 +462,4 @@ Poppler — PDF processing and rendering
 
 A huge thanks to the open-source community and the developers maintaining these projects.
 
----
 
