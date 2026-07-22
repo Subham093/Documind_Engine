@@ -231,19 +231,24 @@ Once the document has been successfully processed and indexed, DocuMind displays
 
 ### Scenario 1 — Upload One Document, Ask a Question
 
+
 The app extracts its text, splits it into chunks, and stores those chunks as vectors. You ask *"What is the main objective of this paper?"* — the app searches only this document's chunks, retrieves the relevant ones, and the AI writes an answer using only that text, shown alongside its sources.
 
 ![Answer With Sources](images/qa-sources.png)
 *A real question, answered — with the exact source chunks shown underneath so you can verify it yourself.*
 
+
 ### Scenario 2 — Ask Multiple Questions About the Same Document
+
 
 ✅ **Fully supported.** Ask as many questions as you like without re-uploading. Follow-ups like "and the second one?" work correctly, because the app rewrites them into standalone questions first.
 
 ![Multiple Questions About the Same Document](images/followup.png)
 *The user asks multiple questions about the same document in a single conversation, including a follow-up question that depends on the previous context.*
 
+
 ### Scenario 3 — Upload a Second Document
+
 
 ❌ **The second document REPLACES the first — it does not add to it.** Clicking Process & Index on `document2.pdf` first wipes `document1.pdf`'s stored vectors, then indexes the new file fresh:
 
@@ -259,7 +264,9 @@ There's no "combined knowledge base" — only one document is searchable at a ti
 ![Uploading a Second Document](images/secdoc.png)
 *The user uploads and processes a second document. The newly indexed document replaces the previously indexed document, so only the latest document is available for retrieval.*
 
+
 ### Scenario 4 — Ask About the First Document After Uploading a Second
+
 
 ⚠️ **This is the part worth knowing carefully.** Two things happen at once:
 - `document1.pdf`'s vector data is **gone** (deleted in Scenario 3)
@@ -272,11 +279,14 @@ So a question about `document1.pdf` gets rewritten using chat history that still
 ![Question About the Previous Document](images/scenario4.png)
 *After switching documents, a question about information from the previous document cannot be answered because its vectors have been removed from the searchable index.*
 
+
 ### Scenario 5 — Refresh / Close and Reopen the App
+
 
 Refreshing starts a brand-new session. The vector store resets — the app does **not** automatically reconnect to the `chroma_db/` folder from before. You'll need to re-upload to continue. (Old vector data may still physically sit in `chroma_db/` on disk, but the running app never loads it back in automatically.)
 
 ---
+
 
 ## 🧠 Memory: What's Remembered, and For How Long
 
@@ -398,13 +408,7 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ---
 
-## 🤝 Contributing
-
-1. Fork the repo
-2. Branch: `git checkout -b feature/your-feature`
-3. Make changes, add tests in `tests/`
-4. Run `pytest tests/ -v`
-5. Open a Pull Request
+---
 
 ## 🤝 Contributing
 
@@ -426,6 +430,10 @@ To contribute:
 
 6. Open a Pull Request with a clear description of your changes.
 
+---
+
+---
+
 ## 📄 License
 
 Licensed under the **MIT License** — see the `LICENSE` file for details.
@@ -436,6 +444,10 @@ Subham Maheswari Jena
 DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
 
 I'm continuously improving the project and exploring practical applications of Generative AI, RAG systems, NLP, and AI-powered document processing.
+
+---
+
+---
 
 ## 🙏 Acknowledgements
 
@@ -452,6 +464,5 @@ Poppler — PDF processing and rendering
 
 A huge thanks to the open-source community and the developers maintaining these projects.
 
-## 🔗 Connect With Me
-🐙 **GitHub:** [Subham093](https://github.com/Subham093)
-📧 **Email**: subhammaheswarijena11339@gmail.com
+---
+
