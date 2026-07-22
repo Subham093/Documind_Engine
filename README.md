@@ -1,6 +1,12 @@
-<!-- 📷 IMAGE PLACEHOLDER — banner is commented out so it doesn't show as a broken image until you add a real file here. 📍 Top of README 🖼️ A wide banner (1280x400px) with the DocuMind name over a simple document + chat-bubble illustration 💡 Suggested file: docs/images/banner.png Once you've added that file, uncomment the two lines below: <p align="center"> <img src="docs/images/banner.png" alt="DocuMind Banner" width="100%"> </p> --> <h1 align="center">🧩 DocuMind</h1> <p align="center"><b>Upload a document. Ask it questions in plain English. Get honest, grounded answers — with proof of where they came from.</b></p> <p align="center"> <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white"> <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white"> <img src="https://img.shields.io/badge/LangChain-Framework-1C3C3C"> <img src="https://img.shields.io/badge/Vector%20DB-Chroma-purple"> <img src="https://img.shields.io/badge/LLM-Groq%20%7C%20gpt--oss--120b-orange"> <img src="https://img.shields.io/badge/License-MIT-green"> </p> <!-- ℹ️ The three badges below (license/stars/last-commit) only work once this is pushed to a REAL public GitHub repo. Replace YOUR_USERNAME/documind with your actual GitHub username and repo name, then uncomment: --> <!-- <p align="center"> <img src="https://img.shields.io/github/license/YOUR_USERNAME/documind"> <img src="https://img.shields.io/github/stars/YOUR_USERNAME/documind?style=social"> <img src="https://img.shields.io/github/last-commit/YOUR_USERNAME/documind"> </p> -->
+# 🧠 DocuMind
 
-💡 New here? Start with the What Should I Expect section — it explains the whole app like you've never used an AI tool before.
+> Upload a document. Ask it questions in plain English. Get an answer — with proof of exactly where it came from.
+
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
+![LangChain](https://img.shields.io/badge/LangChain-LCEL-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 
 ## 📖 What Is This? (Explain-it-like-I'm-10 version)
 
