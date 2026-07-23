@@ -31,7 +31,7 @@ from document_loader import load_any_document
 # 1. SETUP
 
 load_dotenv()
-st.set_page_config(page_title="DocuMind", page_icon="assets/documind_icon_64.png", layout="wide")
+st.set_page_config(page_title="DocuMind", page_icon="asset/documind_icon_64.png", layout="wide")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TMP_DIR = os.path.join(BASE_DIR, "temp_data")

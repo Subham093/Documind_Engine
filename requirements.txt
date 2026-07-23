@@ -26,3 +26,6 @@ langchain-classic
 # Vector Database & Embeddings
 chromadb
 sentence-transformers
+
+# Testing
+pytest
