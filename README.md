@@ -438,7 +438,10 @@ To contribute:
 
 Licensed under the **MIT License** — see the `LICENSE` file for details.
 
-#👤 Author
+---
+
+## 👤 Author
+
 Subham Maheswari Jena
 
 DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
