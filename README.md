@@ -100,7 +100,7 @@ DocuMind uses a modular RAG architecture with two main workflows:
 
 The complete system architecture is shown below:
 
-![DocuMind RAG System Architecture](images/architecture2.png)
+![DocuMind RAG System Architecture](images/architecturedig.png)
 
 ---
 
