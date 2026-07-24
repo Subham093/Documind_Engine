@@ -25,7 +25,7 @@ from langchain_core.messages import HumanMessage, AIMessage
 # Hybrid retriever (vector + BM25 keyword search combined)
 from hybrid_retriever import HybridRetriever
 
-# NEW: universal loader — handles pdf (+ scanned pdf via OCR), txt, csv, docx
+# Universal loader — handles pdf (text-based only), txt, csv, docx, xlsx, xls
 from document_loader import load_any_document
 
 # 1. SETUP
@@ -100,8 +100,8 @@ with st.sidebar:
 
                     # Step 3 — Load the document (any supported type)
                     # This raises ValueError with a clear message if the
-                    # file can't be read (e.g. scanned PDF that even OCR
-                    # can't handle, or an unsupported type).
+                    # file can't be read (e.g. scanned PDF with no text
+                    # layer, which isn't supported, or an unsupported type).
                     docs = load_any_document(file_path)
 
                     text_splitter = RecursiveCharacterTextSplitter(
@@ -152,9 +152,10 @@ with st.sidebar:
         occasionally be read out of order. Tables may lose row/column
         structure.
 
-        **PDF (scanned/image-only):** Uses OCR to read text, which is not
-        perfect — poor scan quality, handwriting, or unusual fonts can
-        cause misreads.
+        **PDF (scanned/image-only): ❌ Not supported.** DocuMind only reads
+        PDFs that have a real, selectable text layer. If a PDF is a scan or
+        photo of a document with no extractable text, it will be rejected
+        with a clear error rather than guessed at.
 
         **TXT:** Assumes UTF-8 encoding; other encodings may fail or show
         garbled text.

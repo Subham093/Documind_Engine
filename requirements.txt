@@ -8,8 +8,6 @@ requests
 # Document Processing
 pypdf
 docx2txt
-pdf2image
-pytesseract
 rank_bm25
 pandas
 openpyxl

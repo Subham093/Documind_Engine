@@ -1,8 +1,8 @@
 """
 Universal document loader for DocuMind.
 
-Supports: .pdf (including scanned/image-only PDFs via OCR fallback),
-.txt, .csv, .docx
+Supports: .pdf (text-based only — scanned/image-only PDFs are not
+supported, see load_any_document below), .txt, .csv, .docx, .xlsx, .xls
 
 Usage:
     from document_loader import load_any_document
@@ -19,7 +19,9 @@ from langchain_community.document_loaders import (
     Docx2txtLoader,
 )
 
-# Below this many extracted characters, a PDF is treated as scanned/image-only
+# Below this many extracted characters, a PDF is treated as having no
+# usable text layer (e.g. scanned/image-only) and is rejected with a
+# clear error rather than guessed at.
 MIN_EXTRACTED_CHARS = 200
 
 
@@ -54,35 +56,14 @@ def _load_excel(file_path):
     return documents
 
 
-def _ocr_pdf(file_path):
-    """
-    Fallback for scanned/image-only PDFs: converts each page to an image,
-    then runs OCR (Tesseract) on it to extract text.
-    Only triggered when normal text extraction comes back near-empty.
-    """
-    from pdf2image import convert_from_path
-    import pytesseract
-
-    pages = convert_from_path(file_path)
-    documents = []
-    for i, page_image in enumerate(pages):
-        text = pytesseract.image_to_string(page_image)
-        documents.append(
-            Document(
-                page_content=text,
-                metadata={"page": i, "source": file_path, "extracted_via": "ocr"},
-            )
-        )
-    return documents
-
-
 def load_any_document(file_path):
     """
     Loads a document of any supported type and returns a list of
     LangChain Document objects, ready for chunking.
 
     Raises ValueError with a clear message if the file type is unsupported
-    or if no readable text could be extracted at all.
+    or if no readable text could be extracted at all (including scanned/
+    image-only PDFs, which are not supported — see MIN_EXTRACTED_CHARS).
     """
     ext = os.path.splitext(file_path)[1].lower()
 
@@ -91,15 +72,12 @@ def load_any_document(file_path):
         extracted_text = "".join(d.page_content for d in docs)
 
         if len(extracted_text.strip()) < MIN_EXTRACTED_CHARS:
-            # Likely scanned/image-only — fall back to OCR
-            docs = _ocr_pdf(file_path)
-            extracted_text = "".join(d.page_content for d in docs)
-
-            if len(extracted_text.strip()) < MIN_EXTRACTED_CHARS:
-                raise ValueError(
-                    "Could not extract readable text from this PDF, even with OCR. "
-                    "The file may be corrupted, password-protected, or genuinely blank."
-                )
+            raise ValueError(
+                "Could not extract readable text from this PDF. It may be "
+                "a scanned/image-only PDF (not currently supported — "
+                "DocuMind only reads PDFs with a real text layer), or the "
+                "file may be corrupted, password-protected, or genuinely blank."
+            )
         return docs
 
     elif ext == ".txt":

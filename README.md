@@ -73,8 +73,7 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 
 ## ✨ Features
 
-- 📄 **Multi-format uploads** — PDF, TXT, CSV, DOCX, XLSX, XLS
-- 🖼️ **Automatic OCR** for scanned/image-only PDFs
+- 📄 **Multi-format uploads** — PDF (text-based), TXT, CSV, DOCX, XLSX, XLS
 - 🔍 **Hybrid search** — combines meaning-based (vector) search with exact keyword (BM25) search
 - 💬 **Conversational follow-ups** within a session — "what about the second one?" is understood correctly
 - 📎 **Transparent sourcing** — every answer shows the exact chunks it came from
@@ -95,12 +94,12 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 
 DocuMind uses a modular RAG architecture with two main workflows:
 
-- **📥 Indexing:** `User → Streamlit → Document Loader + OCR → Text Chunking → Embeddings → ChromaDB`
+- **📥 Indexing:** `User → Streamlit → Document Loader → Text Chunking → Embeddings → ChromaDB`
 - **💬 Question Answering:** `Question → History-Aware Rewriter → Hybrid Retrieval (Vector + BM25) → Groq LLM → Answer + Sources`
 
 The complete system architecture is shown below:
 
-![DocuMind RAG System Architecture](images/architecturedig.png)
+![DocuMind RAG System Architecture](images/finalarchitecture.png)
 
 ---
 
@@ -114,8 +113,7 @@ The complete system architecture is shown below:
 | Embeddings | `sentence-transformers/all-MiniLM-L6-v2` | Turns text into meaning-vectors, runs locally — no document content leaves the server just to be embedded |
 | Vector DB | ChromaDB | Stores and searches those vectors |
 | Keyword search | `rank_bm25` | Catches exact terms/names/numbers meaning-search alone might miss |
-| PDF reading | `pypdf` | Extracts text from normal PDFs |
-| OCR | `pytesseract` + `pdf2image` (+ system `tesseract-ocr`, `poppler-utils`) | Reads scanned PDF pages as images |
+| PDF reading | `pypdf` | Extracts text from text-based PDFs (scanned/image-only PDFs are not supported) |
 | Other formats | `docx2txt`, `pandas`, `openpyxl` | Reads DOCX, CSV, Excel |
 | Secrets | `python-dotenv` | Loads the Groq API key from `.env`, never hardcoded |
 | Testing | `pytest` | Automated checks for the retriever and loader logic |
@@ -131,12 +129,11 @@ The complete system architecture is shown below:
 rag_engine/
 │
 ├── app.py                     # ⭐ The live app — everything below happens here
-├── document_loader.py         # ⭐ Reads any supported file type, with OCR fallback
+├── document_loader.py         # ⭐ Reads any supported file type (text-based PDFs only)
 ├── hybrid_retriever.py        # ⭐ Vector + BM25 search, merged and de-duplicated
 │
 ├── requirements.txt            # Python packages
-├── packages.txt                 # System packages needed for OCR on deployment
-├── .env                         # Your Groq API key (never committed)
+├── .env                        # Your Groq API key (never committed)
 │
 ├── asset/                       # App icon
 ├── chroma_db/                   # Auto-created — current document's vectors live here
@@ -173,7 +170,7 @@ User clicks "🚀 Process & Index"
        ↓
 Any previous document's data is deleted from the vector store
        ↓
-Text is extracted (OCR kicks in automatically if it's a scanned PDF)
+Text is extracted from the document (PDFs must have a real text layer — scanned/image-only PDFs are rejected with a clear error)
        ↓
 Text is split into ~800-character overlapping chunks
        ↓
@@ -203,10 +200,9 @@ Answer is shown, with an expandable list of the exact chunks used
 3. Create a virtual environment: `python -m venv venv`
 4. Activate it — Windows: `venv\Scripts\Activate.ps1` · Mac/Linux: `source venv/bin/activate`
 5. Install packages: `pip install -r requirements.txt`
-6. Install OCR system tools — Windows: install Tesseract + Poppler and add to PATH · Mac: `brew install tesseract poppler` · Linux: `sudo apt install tesseract-ocr poppler-utils`
-7. Get a free Groq API key at [console.groq.com](https://console.groq.com)
-8. Create a `.env` file (see Configuration below)
-9. Run it: `streamlit run app.py` → open `http://localhost:8501`
+6. Get a free Groq API key at [console.groq.com](https://console.groq.com)
+7. Create a `.env` file (see Configuration below)
+8. Run it: `streamlit run app.py` → open `http://localhost:8501`
 
 ## 🔐 Configuration
 
@@ -312,9 +308,9 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 | User Action | Supported? | Actual Behavior |
 |---|---|---|
-| Upload one document | ✅ | PDF, TXT, CSV, DOCX, XLSX, XLS |
+| Upload one document | ✅ | PDF (text-based), TXT, CSV, DOCX, XLSX, XLS |
 | Ask multiple questions about it | ✅ | Chat history kept for the session |
-| OCR for scanned PDFs | ✅ | Automatic fallback when text extraction is near-empty |
+| Read scanned/image-only PDFs | ❌ | Not supported — only PDFs with a real text layer can be read |
 | Upload multiple documents at once | ❌ | Each new upload deletes the previous one |
 | Search across multiple documents | ❌ | Not implemented |
 | Return to a previously uploaded document | ❌ | Its data is gone once replaced |
@@ -326,8 +322,7 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ## ✅ What This Application CAN Do
 
-- Accept **one document at a time** — PDF, TXT, CSV, DOCX, XLSX, or XLS
-- Automatically use **OCR** for scanned/image-only PDFs
+- Accept **one document at a time** — PDF (text-based), TXT, CSV, DOCX, XLSX, or XLS
 - Answer questions using **hybrid search** (meaning-based + keyword-based)
 - Handle **follow-up questions** naturally within a session
 - Show the **exact source chunks** behind every answer
@@ -344,6 +339,7 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 - Guarantee it will **never make a mistake** — hallucination risk is reduced, not eliminated
 - Reliably answer **"how many/total/sum/list everything"** style questions
 - **Isolate multiple simultaneous users** from each other
+- **Read scanned or image-only PDFs** — DocuMind only reads PDFs with a real, selectable text layer; a scanned document or a photo of a document will be rejected with a clear error
 - Preserve **tables, images, or formatting** from DOCX/PDF files
 
 ![Known Limitations Panel](images/limitations.png)
@@ -356,10 +352,10 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 | Situation | What Happens |
 |---|---|
 | Question asked with no document uploaded | Warning shown: *"Please upload a file first."* |
-| Empty or blank PDF | OCR attempted as fallback; if still empty, a clear error is shown |
+| Empty or blank PDF | Rejected with a clear error — no readable text found |
 | Corrupted PDF | Loading fails gracefully — a processing error message, not a crash |
 | Password-protected PDF | Fails to extract text, falls through to the "could not extract readable text" error |
-| Scanned/image-only PDF | Detected automatically (near-empty text) and switched to OCR |
+| Scanned/image-only PDF | Detected automatically (no extractable text layer) and rejected with a clear "not supported" error |
 | PDF with tables | Table structure isn't preserved — becomes plain flowing text |
 | Very large file | Takes longer to process; no explicit file-size limit enforced in code |
 | Same file uploaded twice | Treated as a fresh upload — replaces whatever was previously indexed |
@@ -370,8 +366,8 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ## 💡 What Should I Expect When Using This App?
 
-- **Upload:** one file at a time — PDF, TXT, CSV, DOCX, XLSX, or XLS
-- **Wait time:** a few seconds to under a minute; scanned PDFs (needing OCR) take noticeably longer
+- **Upload:** one file at a time — PDF (text-based), TXT, CSV, DOCX, XLSX, or XLS
+- **Wait time:** a few seconds to under a minute, depending on document length
 - **Answers:** short (up to 3 sentences for normal questions), always tied to a visible source you can double-check
 - **New upload = fresh start**, not "adding to what's there"
 - **Unsupported questions** (e.g. "how many total rows?") get an honest "can't answer that from what I have" instead of a guess
@@ -395,7 +391,7 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 ## 🧯 Error Handling
 
 - Unsupported file type → clear error naming the supported types
-- Unreadable PDF, even after OCR → clear error about possible corruption/password-protection
+- Unreadable or scanned/image-only PDF → clear error explaining it may be unsupported, corrupted, or password-protected
 - Temp file cleanup failures (e.g. Windows file locks) → caught, non-fatal
 - General processing errors → shown as friendly messages, never raw crashes
 
@@ -460,9 +456,5 @@ ChromaDB — Vector storage and retrieval
 Hugging Face — Embeddings and NLP models
 Streamlit — Interactive web application
 rank_bm25 — BM25-based keyword retrieval
-Tesseract OCR — Optical character recognition
-Poppler — PDF processing and rendering
 
 A huge thanks to the open-source community and the developers maintaining these projects.
-
-
