@@ -88,7 +88,7 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 > 🎬 Insert a short demo GIF here: upload → Process & Index → ask a question → see the sourced answer
 > Suggested file: 
 
-![DocuMind Demo](images/demo.gif)
+![DocuMind Demo](images/demoapp.gif)
 
 ---
 
