@@ -85,9 +85,8 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 
 ## 🎥 Demo
 
-> 🎬 Insert a short demo GIF here: upload → Process & Index → ask a question → see the sourced answer
-> Suggested file: 
-
+Upload a document, click Process & Index, then ask a question in plain English — DocuMind retrieves the relevant chunks and answers using only what's actually in your file.
+ 
 ![DocuMind Demo](images/demoapp.gif)
 
 ---
