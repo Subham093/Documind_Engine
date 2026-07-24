@@ -86,7 +86,9 @@ Reading a 40-page report to find one fact is slow, and a basic Ctrl+F only catch
 ## 🎥 Demo
 
 > 🎬 Insert a short demo GIF here: upload → Process & Index → ask a question → see the sourced answer
-> Suggested file: `docs/images/demo.gif`
+> Suggested file: 
+
+![DocuMind Demo](images/demo.gif)
 
 ---
 
@@ -128,18 +130,23 @@ The complete system architecture is shown below:
 ```text
 rag_engine/
 │
-├── app.py                     # ⭐ The live app — everything below happens here
-├── document_loader.py         # ⭐ Reads any supported file type (text-based PDFs only)
-├── hybrid_retriever.py        # ⭐ Vector + BM25 search, merged and de-duplicated
+├── app.py                       # ⭐ The live app — everything below happens here
+├── document_loader.py           # ⭐ Reads any supported file type (text-based PDFs only)
+├── hybrid_retriever.py          # ⭐ Vector + BM25 search, merged and de-duplicated
 │
-├── requirements.txt            # Python packages
-├── .env                        # Your Groq API key (never committed)
+├── requirements.txt             # Python packages
+├── .env                         # Your Groq API key (never committed)
 │
 ├── asset/                       # App icon
 ├── chroma_db/                   # Auto-created — current document's vectors live here
 ├── temp_data/                   # Auto-created — holds an upload briefly, then deletes it
 │
+├── images/
+│   ├── README.md                # What each image is and where it's used
+│   └── ... (screenshots + diagram, see images/README.md)
+│
 ├── tests/
+│   ├── README.md                # What's tested and how to run it
 │   ├── test_hybrid_retriever.py
 │   └── test_document_loader.py
 │
@@ -151,9 +158,10 @@ rag_engine/
     ├── ingest.py
     ├── loader.py
     ├── query.py
-    ├── rag_pipeline.py
     └── store.py
 ```
+
+**How the files interact:** `app.py` is the only file that runs directly. It imports `document_loader.py` to read whatever you upload, and `hybrid_retriever.py` to search through it. Nothing in `experiments/` is called by the running app.
 
 **How the files interact:** `app.py` is the only file that runs directly. It imports `document_loader.py` to read whatever you upload, and `hybrid_retriever.py` to search through it. Nothing in `experiments/` is called by the running app.
 
