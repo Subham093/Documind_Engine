@@ -389,11 +389,15 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 - Temp files deleted immediately after processing
 - No login system — single-user tool by design, not a multi-tenant platform
 
+---
+
 ## ⚡ Performance
 
 - Chunk size ~800 characters, 80-character overlap
 - BM25 keyword index is rebuilt on every question — fine at single-document scale, would need caching at larger scale
 - One-document-at-a-time design keeps search fast, at the cost of no multi-document support
+
+---
 
 ## 🧯 Error Handling
 
@@ -529,6 +533,8 @@ Everything resets — you'll need to re-upload your document.
 ## 👤 Author
 
 **Subham Maheswari Jena**
+*Email - subhammaheswarijena11339@gmail.com*
+*Github - https://github.com/Subham093*
 
 DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
 
