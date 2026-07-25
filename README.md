@@ -485,21 +485,27 @@ SOFTWARE.
 ## ❓ FAQ
 
 **Q: Can I upload more than one document at a time?**
+
 No — uploading a new document replaces the previous one entirely. See [Real-World Scenarios](#-real-world-scenarios) for exactly why.
 
 **Q: Does it work with scanned PDFs or photos of documents?**
+
 No — only PDFs with a real, selectable text layer are supported.
 
 **Q: Is my document data sent anywhere?**
+
 Only the retrieved text chunks and your question are sent to Groq's API to generate the answer. Embeddings are computed locally.
 
 **Q: Why does it sometimes say "I cannot find this information"?**
+
 That's intentional — the app is designed to admit when it doesn't know rather than guess.
 
 **Q: Can it tell me exact counts, totals, or sums from a spreadsheet?**
+
 No — it only ever sees a handful of retrieved rows/chunks, never the entire file, so it won't reliably answer aggregate questions.
 
 **Q: What happens if I refresh the page?**
+
 Everything resets — you'll need to re-upload your document.
 
 ---
