@@ -456,8 +456,6 @@ To contribute:
 
 ## 📄 License
 
-Licensed under the **MIT License** .
-
 MIT License
 
 Copyright (c) 2026 Subham Maheswari Jena
@@ -484,29 +482,47 @@ SOFTWARE.
 
 ## ❓ FAQ
 
-**Q: Can I upload more than one document at a time?**
+<details>
+<summary><b>Can I upload more than one document at a time?</b></summary>
+<br>
 
 No — uploading a new document replaces the previous one entirely. See [Real-World Scenarios](#-real-world-scenarios) for exactly why.
+</details>
 
-**Q: Does it work with scanned PDFs or photos of documents?**
+<details>
+<summary><b>Does it work with scanned PDFs or photos of documents?</b></summary>
+<br>
 
 No — only PDFs with a real, selectable text layer are supported.
+</details>
 
-**Q: Is my document data sent anywhere?**
+<details>
+<summary><b>Is my document data sent anywhere?</b></summary>
+<br>
 
 Only the retrieved text chunks and your question are sent to Groq's API to generate the answer. Embeddings are computed locally.
+</details>
 
-**Q: Why does it sometimes say "I cannot find this information"?**
+<details>
+<summary><b>Why does it sometimes say "I cannot find this information"?</b></summary>
+<br>
 
 That's intentional — the app is designed to admit when it doesn't know rather than guess.
+</details>
 
-**Q: Can it tell me exact counts, totals, or sums from a spreadsheet?**
+<details>
+<summary><b>Can it tell me exact counts, totals, or sums from a spreadsheet?</b></summary>
+<br>
 
 No — it only ever sees a handful of retrieved rows/chunks, never the entire file, so it won't reliably answer aggregate questions.
+</details>
 
-**Q: What happens if I refresh the page?**
+<details>
+<summary><b>What happens if I refresh the page?</b></summary>
+<br>
 
 Everything resets — you'll need to re-upload your document.
+</details>
 
 ---
 
