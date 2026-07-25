@@ -533,7 +533,9 @@ Everything resets — you'll need to re-upload your document.
 ## 👤 Author
 
 **Subham Maheswari Jena**
+
 *Email - subhammaheswarijena11339@gmail.com*
+
 *Github - https://github.com/Subham093*
 
 DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
