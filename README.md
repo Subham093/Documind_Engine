@@ -415,6 +415,23 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ---
 
+## 🗺️ Roadmap
+
+**Near-term**
+- [ ] Add automated tests for edge cases (corrupted files, empty uploads)
+- [ ] Cache the BM25 index instead of rebuilding it per question
+
+**Mid-term**
+- [ ] Support multiple documents at once, with real cross-document search
+- [ ] Preserve tables from PDFs/DOCX properly
+- [ ] Basic user login/isolation for multi-user use
+
+**Long-term**
+- [ ] Bring the FastAPI backend up to parity and deploy as a real, documented API
+- [ ] Persistent cross-session memory (remember documents after closing the app)
+
+---
+
 ## 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome!
@@ -439,13 +456,57 @@ To contribute:
 
 ## 📄 License
 
-Licensed under the **MIT License** — see the `LICENSE` file for details.
+Licensed under the **MIT License** .
+
+MIT License
+
+Copyright (c) 2026 Subham Maheswari Jena
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## ❓ FAQ
+
+**Q: Can I upload more than one document at a time?**
+No — uploading a new document replaces the previous one entirely. See [Real-World Scenarios](#-real-world-scenarios) for exactly why.
+
+**Q: Does it work with scanned PDFs or photos of documents?**
+No — only PDFs with a real, selectable text layer are supported.
+
+**Q: Is my document data sent anywhere?**
+Only the retrieved text chunks and your question are sent to Groq's API to generate the answer. Embeddings are computed locally.
+
+**Q: Why does it sometimes say "I cannot find this information"?**
+That's intentional — the app is designed to admit when it doesn't know rather than guess.
+
+**Q: Can it tell me exact counts, totals, or sums from a spreadsheet?**
+No — it only ever sees a handful of retrieved rows/chunks, never the entire file, so it won't reliably answer aggregate questions.
+
+**Q: What happens if I refresh the page?**
+Everything resets — you'll need to re-upload your document.
 
 ---
 
 ## 👤 Author
 
-Subham Maheswari Jena
+**Subham Maheswari Jena**
 
 DocuMind was built as a hands-on Retrieval-Augmented Generation (RAG) project to explore document intelligence, semantic search, vector retrieval, and LLM-powered question answering.
 
