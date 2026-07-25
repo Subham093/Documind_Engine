@@ -1,0 +1,15 @@
+DocuMind Test Document - Plain Text Format
+
+This is a test file created to verify DocuMind correctly reads TXT files.
+
+Company Information:
+The company featured in this document is called Nexora Robotics. It was founded in the year 2019 by an engineer named Priya Sharma. The company's headquarters is located in Pune, India.
+
+Product Details:
+Nexora Robotics' flagship product is called the SwiftArm-200, a robotic arm designed for warehouse automation. The SwiftArm-200 has a maximum payload capacity of 15 kilograms and operates at a top speed of 2.4 meters per second.
+
+Financial Summary:
+In the fiscal year 2025, Nexora Robotics reported a total revenue of 42 million dollars, representing a 30 percent increase compared to the previous year. The company currently employs 340 people across three offices.
+
+Known Limitation (intentional, for testing):
+This document does NOT mention anything about artificial intelligence chips or semiconductor manufacturing. If DocuMind is asked about semiconductor chips, it should say it cannot find that information.

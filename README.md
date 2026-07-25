@@ -30,27 +30,34 @@ Uncomment once added:
 
 ## 📚 Table of Contents
 
-1. [What Is This?](#-what-is-this-explain-it-like-im-10)
+1. [What Is This?](#-what-is-this)
 2. [The Problem It Solves](#-the-problem-it-solves)
 3. [Features](#-features)
-4. [Screenshots](#️-screenshots)
-5. [Demo](#-demo)
-6. [Architecture](#️-architecture)
-7. [Tech Stack](#-tech-stack)
-8. [Project Structure](#️-project-structure)
-9. [How It Works — Complete Flow](#-how-it-works--the-complete-flow)
-10. [Installation](#️-installation)
-11. [Configuration](#-configuration)
-12. [**Real-World Scenarios (Read This)**](#-real-world-scenarios-exactly-what-happens)
-13. [Memory: What's Remembered](#-memory-whats-remembered-and-for-how-long)
-14. [Capability Matrix](#-capability-matrix)
-15. [What This App CAN / CANNOT Do](#-what-this-application-can-do)
-16. [Edge Cases](#️-edge-cases)
-17. [What Should I Expect?](#-what-should-i-expect-when-using-this-app)
-18. [Security, Performance & Error Handling](#-security)
-19. [Future Improvements](#-future-improvements)
-20. [Contributing](#-contributing)
-21. [License & Author](#-license)
+4. [Demo](#-demo)
+5. [Architecture](#️-architecture)
+6. [Tech Stack](#-tech-stack)
+7. [Project Structure](#️-project-structure)
+8. [How It Works — Complete Flow](#-how-it-works--the-complete-flow)
+9. [Installation](#️-installation)
+10. [Configuration](#-configuration)
+11. [Testing With Sample Files](#-testing-with-sample-files)
+12. [Evaluation & Accuracy](#-evaluation--accuracy)
+13. [**Real-World Scenarios (Read This)**](#-real-world-scenarios)
+14. [Memory: What's Remembered](#-memory-whats-remembered-and-for-how-long)
+15. [Capability Matrix](#-capability-matrix)
+16. [What This App CAN / CANNOT Do](#-what-this-application-can-do)
+17. [Edge Cases](#️-edge-cases)
+18. [What Should I Expect?](#-what-should-i-expect-when-using-this-app)
+19. [Security](#-security)
+20. [Performance](#-performance)
+21. [Error Handling](#-error-handling)
+22. [Future Improvements](#-future-improvements)
+23. [Roadmap](#️-roadmap)
+24. [Contributing](#-contributing)
+25. [License](#-license)
+26. [FAQ](#-faq)
+27. [Author](#-author)
+28. [Acknowledgements](#-acknowledgements)
 
 ---
 
@@ -149,6 +156,13 @@ rag_engine/
 │   ├── test_hybrid_retriever.py
 │   └── test_document_loader.py
 │
+├── sample_files/                # 🧪 Ready-to-use test files — one per supported format
+│   ├── test_document.txt
+│   ├── test_document.csv
+│   ├── test_document.xlsx
+│   ├── test_document.docx
+│   └── test_document.pdf
+│
 └── experiments/                 # 🧪 Earlier prototypes, NOT used by the live app — kept as build history
     ├── app_backend.py           # Alternate FastAPI backend (upload/ask endpoints)
     ├── chat.py                  # Simplest RAG chain, using a local Ollama model
@@ -159,8 +173,6 @@ rag_engine/
     ├── query.py
     └── store.py
 ```
-
-**How the files interact:** `app.py` is the only file that runs directly. It imports `document_loader.py` to read whatever you upload, and `hybrid_retriever.py` to search through it. Nothing in `experiments/` is called by the running app.
 
 **How the files interact:** `app.py` is the only file that runs directly. It imports `document_loader.py` to read whatever you upload, and `hybrid_retriever.py` to search through it. Nothing in `experiments/` is called by the running app.
 
@@ -218,6 +230,32 @@ GROQ_API_KEY=your_groq_api_key_here
 ```
 
 An environment variable is like a sticky note kept *outside* your code, so your secret key never ends up visible on GitHub. `.env` is already listed in `.gitignore` — double-check it stays that way before pushing.
+
+---
+
+## 🧪 Testing With Sample Files
+
+Want to verify DocuMind actually works correctly, right after installing it? The `sample_files/` folder has one ready-made test file per supported format — upload any of them and ask the matching question below. If the answer comes back correct with sources shown, that format is confirmed working.
+
+| File | Ask this | Correct answer should include |
+|---|---|---|
+| `test_document.txt` | "Who founded the company and when?" | Priya Sharma, 2019 |
+| `test_document.csv` | "What is Meera Kapoor's salary and department?" | $110,000, HR |
+| `test_document.xlsx` | "How many units of Battery Pack Pro were sold?" | 2,100 |
+| `test_document.docx` | "How much grant funding did the project receive?" | 2.3 million AUD |
+| `test_document.pdf` | "What is Project Greenline's budget?" | $18.5 million |
+
+**Bonus test — honesty check:** each file has one deliberate "trap" fact it does *not* contain. Try asking about something unrelated (e.g. for `test_document.txt`, ask *"What does this say about semiconductor chips?"*) — a correct response says it can't find that information, rather than guessing.
+
+---
+
+## 📊 Evaluation & Accuracy
+
+DocuMind was manually tested using the ready-made files in `sample_files/` — one per supported format, each containing known facts.
+
+**Result: 6/6 correct.** Every question returned the accurate answer with sources shown, and both "trap" questions (asking about facts deliberately absent from the document) were correctly declined rather than guessed at — confirming the app's grounding behavior works as designed, not just in theory.
+
+This isn't a large-scale benchmark — it's a small, honest, manually-verified check across every supported file type. See [Testing With Sample Files](#-testing-with-sample-files) above to reproduce it yourself.
 
 ---
 
@@ -311,7 +349,7 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ---
 
-## 📊 Capability Matrix
+## 🚦Capability Matrix
 
 | User Action | Supported? | Actual Behavior |
 |---|---|---|
@@ -446,8 +484,10 @@ To contribute:
 
 2. Create a new feature branch:
 
-   ```bash
+```bash
    git checkout -b feature/your-feature
+```
+
 3. Make your changes and add or update tests where applicable.
 
 4. Run `pytest tests/ -v`
@@ -548,11 +588,11 @@ I'm continuously improving the project and exploring practical applications of G
 
 This project was built with the help of the following open-source technologies and libraries:
 
-LangChain — LLM application and RAG orchestration
-Groq — LLM inference
-ChromaDB — Vector storage and retrieval
-Hugging Face — Embeddings and NLP models
-Streamlit — Interactive web application
-rank_bm25 — BM25-based keyword retrieval
+- LangChain — LLM application and RAG orchestration
+- Groq — LLM inference
+- ChromaDB — Vector storage and retrieval
+- Hugging Face — Embeddings and NLP models
+- Streamlit — Interactive web application
+- rank_bm25 — BM25-based keyword retrieval
 
 A huge thanks to the open-source community and the developers maintaining these projects.

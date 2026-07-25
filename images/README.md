@@ -12,4 +12,4 @@ Screenshots and diagrams referenced throughout the main [README](../README.md) â
 | `scenario4.png` | Asking about a previous document after switching |
 | `limitations.png` | The app's built-in Known Limitations panel |
 | `finalarchitecture.png` | System architecture diagram |
-| `demo.gif` | Full walkthrough demo |
+| `demoapp.gif` | Full walkthrough demo |
