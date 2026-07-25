@@ -349,7 +349,7 @@ Refreshing starts a brand-new session. The vector store resets — the app does 
 
 ---
 
-## 🚦Capability Matrix
+## 🚦 Capability Matrix
 
 | User Action | Supported? | Actual Behavior |
 |---|---|---|
