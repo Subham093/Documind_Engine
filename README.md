@@ -1,12 +1,3 @@
-<!-- 📷 IMAGE PLACEHOLDER — commented out so it won't show broken until a real
-     file exists here.
-📍 Top of README
-🖼️ Wide banner (1280x400px), DocuMind name over a simple document + chat-bubble illustration
-💡 Suggested file: docs/images/banner.png
-Uncomment once added:
-<p align="center"><img src="docs/images/banner.png" alt="DocuMind Banner" width="100%"></p>
--->
-
 <h1 align="center">🧩 DocuMind</h1>
 <p align="center"><b>Upload a document. Ask it questions in plain English. Get an answer — with proof of exactly where it came from.</b></p>
 
@@ -18,11 +9,6 @@ Uncomment once added:
   <a href="https://groq.com/"><img src="https://img.shields.io/badge/LLM-Groq%20%7C%20gpt--oss--120b-orange"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green"></a>
 </p>
-
-<!-- ℹ️ Repo is private (shown to interviewers directly rather than linked
-     publicly), so GitHub-hosted stats badges (stars/last-commit) can't
-     resolve — they're intentionally left out rather than shown broken. -->
-
 
 > 💡 **New here?** Jump to [What Should I Expect?](#-what-should-i-expect-when-using-this-app) — it explains the whole app like you've never used an AI tool before.
 
