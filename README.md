@@ -11,12 +11,12 @@ Uncomment once added:
 <p align="center"><b>Upload a document. Ask it questions in plain English. Get an answer — with proof of exactly where it came from.</b></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white">
-  <img src="https://img.shields.io/badge/LangChain-LCEL-1C3C3C">
-  <img src="https://img.shields.io/badge/Vector%20DB-Chroma-purple">
-  <img src="https://img.shields.io/badge/LLM-Groq%20%7C%20gpt--oss--120b-orange">
-  <img src="https://img.shields.io/badge/License-MIT-green">
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white"></a>
+  <a href="https://streamlit.io/"><img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white"></a>
+  <a href="https://python.langchain.com/"><img src="https://img.shields.io/badge/LangChain-LCEL-1C3C3C"></a>
+  <a href="https://www.trychroma.com/"><img src="https://img.shields.io/badge/Vector%20DB-Chroma-purple"></a>
+  <a href="https://groq.com/"><img src="https://img.shields.io/badge/LLM-Groq%20%7C%20gpt--oss--120b-orange"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green"></a>
 </p>
 
 <!-- ℹ️ Repo is private (shown to interviewers directly rather than linked
@@ -230,6 +230,7 @@ GROQ_API_KEY=your_groq_api_key_here
 ```
 
 An environment variable is like a sticky note kept *outside* your code, so your secret key never ends up visible on GitHub. `.env` is already listed in `.gitignore` — double-check it stays that way before pushing.
+
 
 ---
 
@@ -500,27 +501,7 @@ To contribute:
 
 ## 📄 License
 
-MIT License
-
-Copyright (c) 2026 Subham Maheswari Jena
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+This project is licensed under the **[MIT License](LICENSE)**.
 
 ---
 
@@ -596,3 +577,4 @@ This project was built with the help of the following open-source technologies a
 - rank_bm25 — BM25-based keyword retrieval
 
 A huge thanks to the open-source community and the developers maintaining these projects.
+
